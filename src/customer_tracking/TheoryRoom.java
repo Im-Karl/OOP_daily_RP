@@ -32,7 +32,15 @@ public class TheoryRoom extends Room{
 
 	@Override
 	public boolean Qualified() {
-		return isProjector;
+		return (isProjector &&(area/lightCount>=10));
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "TheoryRoom [code=" + code + ", path=" + path + ", area=" + area
+				+ ", lightCount=" + lightCount + "isProjector=" + isProjector +  "]";
 	}
 	
 	

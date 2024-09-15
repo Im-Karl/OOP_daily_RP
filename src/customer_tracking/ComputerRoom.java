@@ -28,8 +28,7 @@ public class ComputerRoom extends Room{
 
 	@Override
 	public boolean Qualified() {
-		// TODO Auto-generated method stub
-		return (area/computerCount) > 1.5;
+		return ((area/computerCount) > 1.5) && (area/lightCount>=10) ;
 	}
 	
 	

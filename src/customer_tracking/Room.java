@@ -41,6 +41,7 @@ public abstract class Room {
 	public Integer getLightCount() {
 		return lightCount;
 	}
+	
 	public void setLightCount(Integer lightCount) {
 		this.lightCount = lightCount;
 	}
@@ -66,7 +67,7 @@ public abstract class Room {
 	
 	public abstract boolean Qualified();
 	
-	
+
 	
 	
 }

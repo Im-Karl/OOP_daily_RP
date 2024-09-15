@@ -9,10 +9,11 @@ public interface ListRoom<T> {
 	void sortDescWithPath();
 	void sortAscWithArea();
 	void sortWithLightCount();
-	void updateRoom(T room,String code);
+	void updateRoom(Room room,String code);
 	void remove(String code);
 	Integer size();
 	List<T>computerRoom();
-	
+	List<T> displayRoom();
+	List<T> roomisQualified();
 	
 }
