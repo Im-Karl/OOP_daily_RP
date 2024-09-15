@@ -33,7 +33,7 @@ public class Main {
 				list.displayRoom();
 			}
 			case 10 -> updateComputerRoom(list);
-			case 11 -> list.size();
+			case 11 -> System.out.println("So luong phong hoc: "+list.size());
 			default -> throw new Exception("I don't know. You have mistake with programe this mine.");
 			}
 			
