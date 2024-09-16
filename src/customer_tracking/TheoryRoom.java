@@ -40,7 +40,7 @@ public class TheoryRoom extends Room{
 	@Override
 	public String toString() {
 		return "TheoryRoom [code=" + code + ", path=" + path + ", area=" + area
-				+ ", lightCount=" + lightCount + "isProjector=" + isProjector +  "]";
+				+ ", lightCount=" + lightCount + ", isProjector=" + isProjector +  "]";
 	}
 	
 	

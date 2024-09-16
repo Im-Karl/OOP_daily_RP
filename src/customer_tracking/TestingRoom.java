@@ -78,7 +78,7 @@ public class TestingRoom extends Room{
 
 	@Override
 	public String toString() {
-		return "TestingRoom [code=" + code + ", path=" + path + ", area=" + area + ", lightCount=" + lightCount + "major=" + major + ", size=" + size +  ",hasSink=" + hasSink + "]";
+		return "TestingRoom [code=" + code + ", path=" + path + ", area=" + area + ", lightCount=" + lightCount + ", major=" + major + ", size=" + size +  ", hasSink=" + hasSink + "]";
 	}
 	
 }

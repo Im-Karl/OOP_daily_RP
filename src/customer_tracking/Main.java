@@ -19,7 +19,7 @@ public class Main {
 			case 2 -> removeRoom(list);
 			case 3 -> list.displayRoom();
 			case 4 -> searchRoom(list);
-			case 5 -> list.roomisQualified();
+			case 5 -> displayRoomIsQualified(list);
 			case 6 -> {list.sortDescWithPath();
 				list.displayRoom();
 			}
@@ -29,9 +29,7 @@ public class Main {
 			case 8 -> {list.sortAscWithArea() ;
 				list.displayRoom();
 			}
-			case 9 -> {list.computerRoom();
-				list.displayRoom();
-			}
+			case 9 -> displayComputerRoom(list);
 			case 10 -> updateComputerRoom(list);
 			case 11 -> System.out.println("So luong phong hoc: "+list.size());
 			default -> throw new Exception("I don't know. You have mistake with programe this mine.");
@@ -41,11 +39,16 @@ public class Main {
 		
 	}
 	
+	private static void displayRoomIsQualified(ListRoom<Room> list) {
+		List<Room> newroom = list.roomisQualified();
+		System.out.println(newroom.toString());
+	}
 
-
-
-
-
+	private static void displayComputerRoom(ListRoom<Room> list) {
+		List<Room> newroom = list.computerRoom();
+		System.out.println(newroom.toString());
+	}
+	
 
 	private static void updateComputerRoom(ListRoom<Room> list) throws Exception {
 		System.out.println("Nhap ma code phong:");
@@ -63,7 +66,8 @@ public class Main {
 
 	private static void searchRoom(ListRoom<Room> list) {
 		System.out.println("Nhap ma code phong muon tim");
-		list.searchRoom((sc.nextLine()));
+		String newcode = sc.nextLine();
+		System.out.println((list.searchRoom((newcode))).toString());
 	}
 
 
@@ -150,6 +154,7 @@ public class Main {
 			System.out.println("9) Hien thi phong co 60 may:");
 			System.out.println("10) Cap nhat phong cho mot phong may tinh:");
 			System.out.println("11) Hien thi tong so luong phong hoc: ");
+			System.out.println("Vui lòng chọn bước tiếp theo!!");
 		 return Integer.parseInt(sc.nextLine());
 	 }
 	 

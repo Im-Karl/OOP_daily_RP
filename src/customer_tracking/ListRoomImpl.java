@@ -51,8 +51,7 @@ public class ListRoomImpl implements ListRoom<Room>{
 	
 	@Override
 	public void sortDescWithPath() {
-		list.sort((r1,r2)-> r1.getCode().compareTo(r2.getCode()));	
-		
+		list.sort((r1,r2)-> (r1.getPath().compareTo(r2.getPath())));	
 	}
 
 	@Override
@@ -81,6 +80,7 @@ public class ListRoomImpl implements ListRoom<Room>{
 		for (Room room : list) {
 			if(room.getCode().equalsIgnoreCase(code)) {
 					list.remove(room);
+					System.out.println("Xoá phòng với code "+ code+ " thành công!");
 					return;
 			}
 		}
