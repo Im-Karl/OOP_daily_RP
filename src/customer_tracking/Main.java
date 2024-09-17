@@ -41,7 +41,9 @@ public class Main {
 	
 	private static void displayRoomIsQualified(ListRoom<Room> list) {
 		List<Room> newroom = list.roomisQualified();
-		System.out.println(newroom.toString());
+		for(Room r: newroom) {
+			System.out.println(r.toString());
+		}
 	}
 
 	private static void displayComputerRoom(ListRoom<Room> list) {
@@ -73,7 +75,16 @@ public class Main {
 
 	private static Object removeRoom(ListRoom<Room> list) {
 		System.out.println("Nhap ma code phong muon xoa");
-		list.remove(sc.nextLine());
+		String z = sc.nextLine();
+		System.out.println("Ban that su muon xoa phong?: \n"
+				+ "1) De dong y. \n"
+				+ "phim bat ky de huy.\n");
+		int x = Integer.parseInt(sc.nextLine());
+		if(x ==1) {
+			list.remove(z);
+		}else {
+			System.out.println("Ban da huy thao tac xoa phong!");
+		}
 		return list;
 	}
 

@@ -106,7 +106,7 @@ public class ListRoomImpl implements ListRoom<Room>{
 	public List<Room> roomisQualified(){
 		List<Room> tmpList = new ArrayList<Room>();
 		for(Room r : list) {
-			if( r.Qualified()){
+			if(r.Qualified()){
 				tmpList.add(r);
 			}
 		}

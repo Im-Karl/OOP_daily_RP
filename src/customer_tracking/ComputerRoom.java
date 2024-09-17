@@ -28,7 +28,7 @@ public class ComputerRoom extends Room{
 
 	@Override
 	public boolean Qualified() {
-		return ((area/computerCount) > 1.5) && (area/lightCount>=10) ;
+		return ((area/computerCount) <= 1.5) && (area/lightCount<=10) ;
 	}
 	
 	

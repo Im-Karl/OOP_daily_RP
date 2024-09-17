@@ -32,7 +32,7 @@ public class TheoryRoom extends Room{
 
 	@Override
 	public boolean Qualified() {
-		return (isProjector &&(area/lightCount>=10));
+		return (this.isProjector() &&(area/lightCount<=10));
 	}
 
 

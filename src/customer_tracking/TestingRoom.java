@@ -70,7 +70,7 @@ public class TestingRoom extends Room{
 
 	@Override
 	public boolean Qualified() {
-		return (hasSink && (area/lightCount>=10));
+		return (this.isHasSink() && (area/lightCount<=10));
 	}
 
 
