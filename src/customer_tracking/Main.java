@@ -87,7 +87,22 @@ public class Main {
 		}
 		return list;
 	}
-
+	
+//	public static void checkRoom(ListRoom<Room> list, String code) {
+//		boolean found = false;
+//		List<Room> newroom = (List<Room>) list;
+//		for(Room r: newroom) {
+//			if(r.getCode().equals(code)) {
+//				System.out.println("Đoạn code phòng này đã xuất hiện với "+ r.toString());
+//				found = true;
+//	            break;
+//			}
+//		}
+//		if (!found) {
+//	        System.out.println("Mã code này chưa tồn tại, bạn có thể thêm phòng.");
+//	    }
+//	}
+	
 	public static void adddRoom(ListRoom<Room>list) throws Exception {
 		Integer choice =0;
 		System.out.println("Chon phong muon tao:  1-Computer"
@@ -99,7 +114,8 @@ public class Main {
 		case 1: {
 			 ComputerRoom room =  new ComputerRoom();
 			 System.out.println("Nhap ma code");
-			 room.setCode(sc.nextLine());
+			 String code = sc.nextLine();
+			 room.setCode(code);
 			 System.out.println("Nhap ma path");
 			 room.setPath(Integer.parseInt(sc.nextLine()));
 			 System.out.println("Nhap dien tich");
