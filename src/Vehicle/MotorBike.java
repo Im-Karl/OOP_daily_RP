@@ -24,5 +24,7 @@ public class MotorBike  extends Vehicle{
 		return "MotorBike [id=" + id + ", brand=" + brand + ", type=" + type + ", speed=" + speed
 				+ ", price=" + price +", fuel=" + fuel + "]";
 	}
-	
+	public boolean qualified() {
+		return speed > 150 ;
+	}
 }

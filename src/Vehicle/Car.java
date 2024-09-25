@@ -27,5 +27,7 @@ public class Car extends Vehicle{
 		return "Car [id=" + id + ", brand=" + brand + ", type=" + type
 				+ ", speed=" + speed + ", price=" + price + "seat=" + seat +  ", fuel=" + fuel+ "]";
 	}
-	
+	public boolean qualified() {
+		return seat > 4 ;
+	}
  }

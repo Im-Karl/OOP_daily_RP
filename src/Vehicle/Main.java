@@ -1,5 +1,7 @@
 package Vehicle;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -12,17 +14,21 @@ public class Main {
 			choice  = choice();
 			switch(choice) {
 			case 1 -> addVehicle(list); 
-			case 2 -> removeVehicle(list);
+			case 2 -> removeVehicle1(list);
 			case 3 -> list.displayVehicle();
 			case 4 -> searchVehicle1(list);
-			case 5 -> list.sortVehicleWithID();
-			case 6 -> list.sortVehicleWithPrice();
-			//case 7 -> //;
+			case 5 -> {list.sortVehicleWithID();
+					list.displayVehicle();
+			}
+			case 6 -> {list.sortVehicleWithPrice();
+					list.displayVehicle();
+			}
+			case 7 -> listQualified(list);
 			case 8 -> updateVehicle(list);
 			case 9 -> list.size();
 			case 10 -> list.clearAll();
 			}
-		}while(choice == 0);
+		}while(choice != 0);
 	}
 
 
@@ -42,7 +48,12 @@ public class Main {
 	}
 
 
-
+	private static void listQualified(ListVehicle<Vehicle> list) {
+		List<Vehicle> newlist = list.listqualified();
+		for(Vehicle v: newlist) {
+			System.out.println(v.toString());
+		}
+	}
 
 
 
@@ -55,7 +66,7 @@ public class Main {
 
 
 
-	private static Object removeVehicle(ListVehicle<Vehicle> list) {
+	private static Object removeVehicle1(ListVehicle<Vehicle> list) {
 		System.out.println("Nhap id phuong tien muon xoa:");
 		Integer newID = Integer.parseInt(sc.nextLine());
 		System.out.println("Ban that su muon xoa phong?: \n"
@@ -77,9 +88,10 @@ public class Main {
 		System.out.println("Please choose the typr of vehicle\n"
 				+ "1) BikeCycle\n"
 				+ "2) MotorBike\n"
-				+ "3) Car\n "
+				+ "3) Car\n"
 				+ "4) Truck\n"
 				+ "5) Coach");
+		choice = Integer.parseInt(sc.nextLine());
 		switch(choice) {
 		case 1: 
 			BikeCycle bike = new BikeCycle();
@@ -100,6 +112,7 @@ public class Main {
 			String tyre = sc.nextLine();
 			bike.setTyre(tyre);
 			list.addVehicle(bike);
+			break;
 		case 2:
 			MotorBike motor = new MotorBike();
 			System.out.println("Nhap ma id:");
@@ -115,6 +128,7 @@ public class Main {
 			System.out.println("Nhapa nhieu lieu:");
 			motor.setFuel(sc.nextLine());
 			list.addVehicle(motor);
+			break;
 		case 3:
 			Car car = new Car();
 			System.out.println("Nhap ma id:");
@@ -132,6 +146,7 @@ public class Main {
 			System.out.println("Nhap so cho ngoi:");
 			car.setSeat(Integer.parseInt(sc.nextLine()));
 			list.addVehicle(car);
+			break;
 		case 4:
 			Truck truck = new Truck();
 			System.out.println("Nhap ma id:");
@@ -149,6 +164,7 @@ public class Main {
 			System.out.println("Nhap trong tai:");
 			truck.setWeight(Integer.parseInt(sc.nextLine()));
 			list.addVehicle(truck);
+			break;
 		case 5:
 			Coach coach = new Coach();
 			System.out.println("Nhap ma id:");
@@ -161,13 +177,14 @@ public class Main {
 			coach.setSpeed(Integer.parseInt(sc.nextLine()));
 			System.out.println("Nhap gia tien:");
 			coach.setPrice(Integer.parseInt(sc.nextLine()));
-			System.out.println("Nhapa nhieu lieu:");
+			System.out.println("Nhap nhieu lieu:");
 			coach.setFuel(sc.nextLine());
 			System.out.println("Nhap so cho ngoi:");
 			coach.setSeat(Integer.parseInt(sc.nextLine()));
 			System.out.println("Nhap tram den:");
 			coach.setStation(sc.nextLine());
 			list.addVehicle(coach);
+			break;
 		}
 	}
 	private static Integer choice() {
@@ -183,7 +200,7 @@ public class Main {
 		System.out.println("8) Update Vehicle");
 		System.out.println("9) Take the size");
 		System.out.println("10) Clear list");
-		System.out.println("Please choose one option!!!SS");
+		System.out.println("Please choose one option!!!");
 		return Integer.parseInt(sc.nextLine());
 	}
 	

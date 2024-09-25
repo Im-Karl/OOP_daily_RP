@@ -66,5 +66,6 @@ public abstract class Vehicle {
 		return "Vehicle [id=" + id + ", brand=" + brand + ", type=" + type +  ", price=" + price
 				+ "]";
 	}
+	protected abstract boolean qualified();
 	
 }

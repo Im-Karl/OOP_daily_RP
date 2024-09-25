@@ -34,5 +34,7 @@ public class Truck extends Vehicle{
 		return "Truck [id=" + id + ", brand=" + brand + ", type=" + type + ", speed=" + speed
 				+ ", price=" + price +", weight=" + weight + ", fuel="+ fuel+ "]";
 	}
-	
+	public boolean qualified() {
+		return weight > 2500 ;
+	}
 }

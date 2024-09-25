@@ -35,5 +35,7 @@ public class Coach extends Vehicle{
 		return "Coach [id=" + id + ", brand=" + brand
 				+ ", type=" + type + ", speed=" + speed + ", price=" + price + ", seat=" + seat + ", station=" + station +", fuel=" + fuel +"]";
 	}
-	
+	public boolean qualified() {
+		return seat>30 || speed >60 ;
+	}
 }

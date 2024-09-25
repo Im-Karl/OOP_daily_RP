@@ -46,7 +46,9 @@ public class VehicleImpls implements ListVehicle<Vehicle>{
 			if(v.getId().equals(id)) {
 				list.remove(v);
 				System.out.println("Delete successful");
-				}
+			}else {
+				System.out.println("Not containt this id in list");
+			}
 		}
 	}
 
@@ -83,9 +85,14 @@ public class VehicleImpls implements ListVehicle<Vehicle>{
 	}
 
 	@Override
-	public List<Vehicle> qualified() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Vehicle> listqualified() {
+		List<Vehicle> s = new LinkedList<Vehicle>();
+		for(Vehicle v: list) {
+			if(v.qualified()) {
+				s.add(v);
+			}
+		}
+		return  s;
 	}
 
 	@Override

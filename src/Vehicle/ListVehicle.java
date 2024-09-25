@@ -11,7 +11,7 @@ public interface ListVehicle<T> {
 	void sortVehicleWithPrice();
 	List<T> displayVehicle();
 	void updateVehicle(Vehicle vehicle, Integer id);
-	List<T> qualified();
 	Integer size();
 	void clearAll();
+	List<Vehicle> listqualified();
 }

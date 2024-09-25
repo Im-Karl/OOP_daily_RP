@@ -24,5 +24,7 @@ public class BikeCycle extends Vehicle{
 		return "BikeCycle [id=" + id + ", brand=" + brand + ", type=" + type
 				+ ", speed=" + speed + ", price=" + price+ ", tyre=" + tyre   + "]";
 	}
-	
+	public boolean qualified() {
+		return true ;
+	}
 }
