@@ -18,7 +18,9 @@ public class BikeCycle extends Vehicle{
 	public void setTyre(String tyre) {
 		this.tyre = tyre;
 	}
-
+	public void afterToString() {
+		System.out.println("");
+	}
 	@Override
 	public String toString() {
 		return "BikeCycle [id=" + id + ", brand=" + brand + ", type=" + type

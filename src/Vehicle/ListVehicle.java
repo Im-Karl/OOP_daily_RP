@@ -6,6 +6,7 @@ import java.util.Queue;
 public interface ListVehicle<T> {
 	void addVehicle(T v);
 	T searchVehicle(Integer code);
+//	T searchVehicle(String type);
 	void removeVehicle(Integer id);
 	void sortVehicleWithID();
 	void sortVehicleWithPrice();

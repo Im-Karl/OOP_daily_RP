@@ -1,6 +1,7 @@
 package Vehicle;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,11 +28,21 @@ public class Main {
 			case 8 -> updateVehicle(list);
 			case 9 -> list.size();
 			case 10 -> list.clearAll();
+			case 11 -> searchVehicle2(list);
 			}
 		}while(choice != 0);
 	}
 
-
+	public static void form() {
+		System.out.printf("%-5s %-20s %-15s %-10s %-10s%n", "ID", "Brand", "Type", "Speed", "Price");
+        System.out.println("-------------------------------------------------------------------------------");
+	}
+	
+	public static void displayAgain(Vehicle v) {
+        // In danh sách phương tiện
+        System.out.printf("%-5d %-20s %-15s %-10d %-10d %s%n", 
+                v.getId(), v.getBrand(), v.getType(), v.getSpeed(), v.getPrice(), v.toString());
+	}
 
 	private static Object updateVehicle(ListVehicle<Vehicle> list) {
 		System.out.println("Nhap ID phuong tien:");
@@ -51,7 +62,7 @@ public class Main {
 	private static void listQualified(ListVehicle<Vehicle> list) {
 		List<Vehicle> newlist = list.listqualified();
 		for(Vehicle v: newlist) {
-			System.out.println(v.toString());
+			displayAgain(v);
 		}
 	}
 
@@ -60,10 +71,24 @@ public class Main {
 	private static void searchVehicle1(ListVehicle<Vehicle> list) {
 		System.out.println("Nhap Id Phuong tien muon tim:");
 		Integer newID = Integer.parseInt(sc.nextLine());
-		System.out.println((list.searchVehicle(newID)).toString());
+		//System.out.println((list.searchVehicle(newID)).toString());
+		form();
+		displayAgain(list.searchVehicle(newID));
 	}
 
-
+	private static void searchVehicle2(ListVehicle<Vehicle> list) {
+	    System.out.println("Nhập Kiểu Phương tiện muốn tìm:");
+	    String newtype = sc.nextLine();
+	    List<Vehicle> results = ((VehicleImpls) list).searchVehicle(newtype); 
+	    if (results.isEmpty()) {
+	        System.out.println("Không có gì cả!!");
+	    } else {
+	    	form();
+	        for (Vehicle v : results) {
+	            displayAgain(v);
+	        }
+	    }
+	}
 
 
 	private static Object removeVehicle1(ListVehicle<Vehicle> list) {
@@ -103,12 +128,12 @@ public class Main {
 			bike.setBrand(brand);
 			bike.setType("Xe Dap");
 			System.out.println("Nhap toc do:");
-			Integer speed = Integer.parseInt(sc.nextLine());
+			Integer speed = Integer.parseInt(sc.nextLine());// ktra nếu không phải int thì nhập lại, nếu là int thì xét trong khoang từ 10-500
 			bike.setSpeed(speed);
-			System.out.println("Nhap gia tien:");
+			System.out.println("Nhap gia tien:");//ktra nếu không phải int thì nhập lại, nếu là int thì xét trong khoang từ 100 000-500 000 000 000
 			Integer price = Integer.parseInt(sc.nextLine());
 			bike.setPrice(price);
-			System.out.println("Nhap loai lop:");
+			System.out.println("Nhap loai lop:");// Sau này nên làm một danh sách lưu tất cả các material để check trường hợp xuất hiện trong đó mới cho thêm.
 			String tyre = sc.nextLine();
 			bike.setTyre(tyre);
 			list.addVehicle(bike);
@@ -125,8 +150,8 @@ public class Main {
 			motor.setSpeed(Integer.parseInt(sc.nextLine()));
 			System.out.println("Nhap gia tien:");
 			motor.setPrice(Integer.parseInt(sc.nextLine()));
-			System.out.println("Nhapa nhieu lieu:");
-			motor.setFuel(sc.nextLine());
+			System.out.println("Nhap nhieu lieu:");
+			motor.setFuel(sc.nextLine());// Sau này nên làm một danh sách lưu tất cả các loại nhiên liệu để check trường hợp xuất hiện trong đó mới cho thêm.
 			list.addVehicle(motor);
 			break;
 		case 3:
@@ -141,10 +166,10 @@ public class Main {
 			car.setSpeed(Integer.parseInt(sc.nextLine()));
 			System.out.println("Nhap gia tien:");
 			car.setPrice(Integer.parseInt(sc.nextLine()));
-			System.out.println("Nhapa nhieu lieu:");
-			car.setFuel(sc.nextLine());
+			System.out.println("Nhap nhieu lieu:");
+			car.setFuel(sc.nextLine());// Sau này nên làm một danh sách lưu tất cả các loại nhiên liệu để check trường hợp xuất hiện trong đó mới cho thêm.
 			System.out.println("Nhap so cho ngoi:");
-			car.setSeat(Integer.parseInt(sc.nextLine()));
+			car.setSeat(Integer.parseInt(sc.nextLine()));//ktra nếu không phải int thì nhập lại, nếu là int thì xét trong khoang từ 2 - 7 chỗ
 			list.addVehicle(car);
 			break;
 		case 4:
@@ -159,10 +184,10 @@ public class Main {
 			truck.setSpeed(Integer.parseInt(sc.nextLine()));
 			System.out.println("Nhap gia tien:");
 			truck.setPrice(Integer.parseInt(sc.nextLine()));
-			System.out.println("Nhapa nhieu lieu:");
+			System.out.println("Nhap nhieu lieu:");
 			truck.setFuel(sc.nextLine());
-			System.out.println("Nhap trong tai:");
-			truck.setWeight(Integer.parseInt(sc.nextLine()));
+			System.out.println("Nhap tai trong:");
+			truck.setWeight(Integer.parseInt(sc.nextLine()));//ktra nếu không phải int thì nhập lại, nếu là int thì xét trong khoang từ 500-30 000kg
 			list.addVehicle(truck);
 			break;
 		case 5:
@@ -179,10 +204,10 @@ public class Main {
 			coach.setPrice(Integer.parseInt(sc.nextLine()));
 			System.out.println("Nhap nhieu lieu:");
 			coach.setFuel(sc.nextLine());
-			System.out.println("Nhap so cho ngoi:");
+			System.out.println("Nhap so cho ngoi:");//ktra nếu không phải int thì nhập lại, nếu là int thì xét trong khoang từ 16 - 45 chỗ
 			coach.setSeat(Integer.parseInt(sc.nextLine()));
 			System.out.println("Nhap tram den:");
-			coach.setStation(sc.nextLine());
+			coach.setStation(sc.nextLine());// Sau này nên làm một danh sách lưu tất cả các loại trạm đến để check trường hợp xuất hiện trong đó mới cho thêm.
 			list.addVehicle(coach);
 			break;
 		}

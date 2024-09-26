@@ -64,14 +64,19 @@ public class VehicleImpls implements ListVehicle<Vehicle>{
 
 	@Override
 	public List<Vehicle> displayVehicle() {
-		if(list.isEmpty()) {
-			System.out.println("List is empty!");
-		}else {
-			for(Vehicle v : list) {
-				System.out.println(v.toString());
-			}
-		}
-		return list;
+	    if (list.isEmpty()) {
+	        System.out.println("List is empty!");
+	    } else {
+	        // In tiêu đề bảng
+	        System.out.printf("%-5s %-20s %-15s %-10s %-10s %-10s%n", "ID", "Brand", "Type", "Speed", "Price", "Details");
+	        System.out.println("-------------------------------------------------------------------------------");
+	        // In danh sách phương tiện
+	        for (Vehicle v : list) {
+	            System.out.printf("%-5d %-20s %-15s %-10d %-10d %s%n", 
+	                v.getId(), v.getBrand(), v.getType(), v.getSpeed(), v.getPrice(), v.toString());
+	        }
+	    }
+	    return list;
 	}
 
 	@Override
@@ -103,6 +108,21 @@ public class VehicleImpls implements ListVehicle<Vehicle>{
 	@Override
 	public void clearAll() {
 		list.clear();
+	}
+	public List<Vehicle> searchVehicle(String type) {
+	    List<Vehicle> newlist = new LinkedList<>();
+	    
+	    if (list.isEmpty()) {
+	        System.out.println(" ");
+	        return newlist; 
+	    }
+	    
+	    for (Vehicle v : list) {
+	        if (v.getType().equalsIgnoreCase(type)) {
+	            newlist.add(v);
+	        }
+	    }
+	    return newlist; 
 	}
 
 }
