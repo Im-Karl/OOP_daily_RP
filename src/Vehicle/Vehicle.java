@@ -1,12 +1,13 @@
 package Vehicle;
-
+import java.math.BigInteger;
 import java.util.Objects;
 
 public abstract class Vehicle {
 	protected Integer id;
 	protected String brand, type;
-	protected Integer speed, price;
-	public Vehicle(Integer id, String brand, String type,Integer speed, Integer price) {
+	protected Integer speed;
+	protected BigInteger price;
+	public Vehicle(Integer id, String brand, String type,Integer speed, BigInteger price) {
 		this.id = id;
 		this.brand = brand;
 		this.type = type;
@@ -33,10 +34,10 @@ public abstract class Vehicle {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public Integer getPrice() {
+	public BigInteger getPrice() {
 		return price;
 	}
-	public void setPrice(Integer price) {
+	public void setPrice(BigInteger price) {
 		this.price = price;
 	}
 	

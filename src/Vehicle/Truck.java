@@ -1,10 +1,12 @@
 package Vehicle;
 
+import java.math.BigInteger;
+
 public class Truck extends Vehicle{
 	protected Integer weight;
 	protected String fuel;
 
-	public Truck(Integer id, String brand, String type, Integer speed, Integer price, Integer weight, String fuel) {
+	public Truck(Integer id, String brand, String type, Integer speed, BigInteger price, Integer weight, String fuel) {
 		super(id, brand, type, speed, price);
 		this.weight = weight;
 		this.fuel = fuel;

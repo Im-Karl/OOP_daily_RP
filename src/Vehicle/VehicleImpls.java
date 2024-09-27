@@ -1,5 +1,5 @@
 package Vehicle;
-
+import java.math.BigInteger;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,7 +29,8 @@ public class VehicleImpls implements ListVehicle<Vehicle>{
 	        System.out.println("Add successful!!");
 	    }
 	}
-
+	
+	
 	@Override
 	public Vehicle searchVehicle(Integer id) {
 		for(Vehicle v : list) {
@@ -67,12 +68,10 @@ public class VehicleImpls implements ListVehicle<Vehicle>{
 	    if (list.isEmpty()) {
 	        System.out.println("List is empty!");
 	    } else {
-	        // In tiêu đề bảng
-	        System.out.printf("%-5s %-20s %-15s %-10s %-10s %-10s%n", "ID", "Brand", "Type", "Speed", "Price", "Details");
+	        System.out.printf("%-5s %-20s %-15s %-10s %-15s %-10s%n", "ID", "Brand", "Type",  "Speed (Km/h)", "Price (Dong)", "Details");
 	        System.out.println("-------------------------------------------------------------------------------");
-	        // In danh sách phương tiện
 	        for (Vehicle v : list) {
-	            System.out.printf("%-5d %-20s %-15s %-10d %-10d %s%n", 
+	            System.out.printf("%-5d %-20s %-15s %-15d %-13d %s%n", 
 	                v.getId(), v.getBrand(), v.getType(), v.getSpeed(), v.getPrice(), v.toString());
 	        }
 	    }
@@ -116,7 +115,6 @@ public class VehicleImpls implements ListVehicle<Vehicle>{
 	        System.out.println(" ");
 	        return newlist; 
 	    }
-	    
 	    for (Vehicle v : list) {
 	        if (v.getType().equalsIgnoreCase(type)) {
 	            newlist.add(v);
@@ -125,4 +123,18 @@ public class VehicleImpls implements ListVehicle<Vehicle>{
 	    return newlist; 
 	}
 
+	public List<Vehicle> searchVehicle(BigInteger min, BigInteger max) {
+	    List<Vehicle> newlist = new LinkedList<>();
+	    if (list.isEmpty()) {
+	        System.out.println(" ");
+	        return newlist; 
+	    }
+	    for (Vehicle v : list) {
+	    	BigInteger price = v.getPrice();
+	        if (price.compareTo(min) >= 0 && price.compareTo(max) <= 0) {
+	            newlist.add(v);
+	        }
+	    }
+	    return newlist; 
+	}
 }

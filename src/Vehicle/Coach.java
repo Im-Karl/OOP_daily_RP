@@ -1,9 +1,11 @@
 package Vehicle;
 
+import java.math.BigInteger;
+
 public class Coach extends Vehicle{
 	protected Integer seat;
 	protected String fuel, station;
-	public Coach(Integer id, String brand, String type, Integer speed, Integer price, Integer seat,String station, String fuel
+	public Coach(Integer id, String brand, String type, Integer speed, BigInteger price, Integer seat,String station, String fuel
 			) {
 		super(id, brand, type, speed, price);
 		this.seat = seat;
