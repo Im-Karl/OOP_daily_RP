@@ -5,8 +5,8 @@ import java.math.BigInteger;
 public class MotorBike  extends Vehicle{
 	protected String fuel;
 
-	public MotorBike(Integer id, String brand, String type, Integer speed, BigInteger price, String fuel) {
-		super(id, brand, type, speed, price);
+	public MotorBike(Integer id, String brand, String type, Integer speed, BigInteger price,String colour, String fuel) {
+		super(id, brand, type, speed, price, colour);
 		this.fuel = fuel;
 	}
 
@@ -23,8 +23,7 @@ public class MotorBike  extends Vehicle{
 
 	@Override
 	public String toString() {
-		return "MotorBike [id=" + id + ", brand=" + brand + ", type=" + type + ", speed=" + speed
-				+ ", price=" + price +", fuel=" + fuel + "]";
+		return "MotorBike [fuel=" + fuel + "]";
 	}
 	public boolean qualified() {
 		return speed > 150 ;

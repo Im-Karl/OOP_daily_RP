@@ -5,8 +5,8 @@ import java.math.BigInteger;
 public class BikeCycle extends Vehicle{
 	protected String tyre;
 
-	public BikeCycle(Integer id, String brand, String type, Integer speed, BigInteger price, String tyre) {
-		super(id, brand, type, speed, price);
+	public BikeCycle(Integer id, String brand, String type, Integer speed, BigInteger price,String colour, String tyre) {
+		super(id, brand, type, speed, price, colour);
 		this.tyre = tyre;
 	}
 
@@ -25,8 +25,7 @@ public class BikeCycle extends Vehicle{
 	}
 	@Override
 	public String toString() {
-		return "BikeCycle [id=" + id + ", brand=" + brand + ", type=" + type
-				+ ", speed=" + speed + ", price=" + price+ ", tyre=" + tyre   + "]";
+		return "BikeCycle [tyre=" + tyre   + "]";
 	}
 	public boolean qualified() {
 		return true ;

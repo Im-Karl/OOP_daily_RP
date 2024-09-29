@@ -4,15 +4,16 @@ import java.util.Objects;
 
 public abstract class Vehicle {
 	protected Integer id;
-	protected String brand, type;
+	protected String brand, type,colour;
 	protected Integer speed;
 	protected BigInteger price;
-	public Vehicle(Integer id, String brand, String type,Integer speed, BigInteger price) {
+	public Vehicle(Integer id, String brand, String type,Integer speed, BigInteger price, String colour) {
 		this.id = id;
 		this.brand = brand;
 		this.type = type;
 		this.speed = speed;
 		this.price = price;
+		this.colour= colour;
 	}
 	public Vehicle() {
 	}
@@ -47,6 +48,12 @@ public abstract class Vehicle {
 	public void setSpeed(Integer speed) {
 		this.speed = speed;
 	}
+	public String getColour() {
+		return colour;
+	}
+	public void setColour(String colour) {
+		this.colour = colour;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -64,7 +71,7 @@ public abstract class Vehicle {
 	}
 	@Override
 	public String toString() {
-		return "Vehicle [id=" + id + ", brand=" + brand + ", type=" + type +  ", price=" + price
+		return "Vehicle [id=" + id + ", brand=" + brand + ", type=" + type +  ", price=" + price +" ,colour"+ colour
 				+ "]";
 	}
 	protected abstract boolean qualified();

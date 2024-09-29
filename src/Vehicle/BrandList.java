@@ -21,7 +21,7 @@ public class BrandList {
 	}
 	public void displayBrand() {
 		if(brandlist.isEmpty()) {
-			System.out.println("Danh sách giá trống.");
+			System.out.println("Danh sách hãng trống.");
 		}else {
 			System.out.println("Danh sách hãng niêm yết:");
             for (String brand : brandlist) {

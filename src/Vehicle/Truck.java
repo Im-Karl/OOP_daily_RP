@@ -6,8 +6,8 @@ public class Truck extends Vehicle{
 	protected Integer weight;
 	protected String fuel;
 
-	public Truck(Integer id, String brand, String type, Integer speed, BigInteger price, Integer weight, String fuel) {
-		super(id, brand, type, speed, price);
+	public Truck(Integer id, String brand, String type, Integer speed, BigInteger price,String colour, Integer weight, String fuel) {
+		super(id, brand, type, speed, price, colour);
 		this.weight = weight;
 		this.fuel = fuel;
 	}
@@ -33,8 +33,7 @@ public class Truck extends Vehicle{
 
 	@Override
 	public String toString() {
-		return "Truck [id=" + id + ", brand=" + brand + ", type=" + type + ", speed=" + speed
-				+ ", price=" + price +", weight=" + weight + ", fuel="+ fuel+ "]";
+		return "Truck [fuel"+ fuel+ ", weight=" + weight +  "]";
 	}
 	public boolean qualified() {
 		return weight > 2500 ;

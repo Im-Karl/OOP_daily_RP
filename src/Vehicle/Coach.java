@@ -5,9 +5,9 @@ import java.math.BigInteger;
 public class Coach extends Vehicle{
 	protected Integer seat;
 	protected String fuel, station;
-	public Coach(Integer id, String brand, String type, Integer speed, BigInteger price, Integer seat,String station, String fuel
+	public Coach(Integer id, String brand, String type, Integer speed, BigInteger price,String colour, Integer seat,String station, String fuel
 			) {
-		super(id, brand, type, speed, price);
+		super(id, brand, type, speed, price, colour);
 		this.seat = seat;
 		this.fuel = fuel;
 		this.station = station;
@@ -34,8 +34,7 @@ public class Coach extends Vehicle{
 	}
 	@Override
 	public String toString() {
-		return "Coach [id=" + id + ", brand=" + brand
-				+ ", type=" + type + ", speed=" + speed + ", price=" + price + ", seat=" + seat + ", station=" + station +", fuel=" + fuel +"]";
+		return "Coach [seat=" + seat +", fuel=" + fuel +", station=" + station +"]";
 	}
 	public boolean qualified() {
 		return seat>30 || speed >60 ;
