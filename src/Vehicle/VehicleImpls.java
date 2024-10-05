@@ -26,7 +26,6 @@ public class VehicleImpls implements ListVehicle<Vehicle>{
 	    }
 	    if (!exists) {
 	        list.add(v);
-	        System.out.println("Add successful!!");
 	    }
 	}
 	
@@ -46,7 +45,6 @@ public class VehicleImpls implements ListVehicle<Vehicle>{
 		for(Vehicle v : list) {
 			if(v.getId().equals(id)) {
 				list.remove(v);
-				System.out.println("Delete successful");
 			}else {
 				System.out.println("Not containt this id in list");
 			}
@@ -68,12 +66,14 @@ public class VehicleImpls implements ListVehicle<Vehicle>{
 	    if (list.isEmpty()) {
 	        System.out.println("List is empty!");
 	    } else {
-	    	System.out.printf("%-4s %-14s %-10s %-10s %-10s %-15s %-18s%n", "ID", "Brand", "Type","Colour",  "Speed (Km/h)", "Price (Dong)", "Details");
-	        System.out.println("-------------------------------------------------------------------------------");
-	        for (Vehicle v : list) {
-	            System.out.printf("%-4s %-14s %-10s %-15s %-7d %-15d %s%n", 
-	                v.getId(), v.getBrand(), v.getType(), v.getColour(), v.getSpeed(), v.getPrice(), v.toString());
-	        }
+	    	System.out.printf("%-4s %-14s %-10s %-10s %-10s %-15s %-18s%n", 
+	                  "ID", "Brand", "Type", "Colour", "Speed (Km/h)", "Price (Dong)", "Details");
+			System.out.println("-------------------------------------------------------------------------------");
+		
+			for (Vehicle v : list) {
+			    System.out.printf("%-4d %-14s %-10s %-10s %-10d %-15d %-18s%n", 
+			                      v.getId(), v.getBrand(), v.getType(), v.getColour(), v.getSpeed(), v.getPrice(), v.toString());
+			}				
 	    }
 	    return list;
 	}
@@ -101,8 +101,9 @@ public class VehicleImpls implements ListVehicle<Vehicle>{
 
 	@Override
 	public Integer size() {
-		System.out.println("Số lượng trong cửa hàng: "+list.size());
-		return null;
+//		System.out.println("Số lượng trong cửa hàng: "+list.size());
+//		return null;
+		return list.size();
 	}
 
 	@Override

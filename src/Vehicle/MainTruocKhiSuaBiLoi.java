@@ -1,24 +1,20 @@
 package Vehicle;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-public class Main {
+public class MainTruocKhiSuaBiLoi {
 	    public static Scanner sc = new Scanner(System.in);
 	    private static ListVehicle<Vehicle> list;
 	    private static VehicleHasBeenSold list2;
 	    private static CustomerList customerList;
 	    private static AccesoriesList accessorieslist;
 	    private static CustomerBuyAccessoriesList customerList2;
-	    private static Set<Integer> idForCustomer ;
-	    private static Set<Integer> idForVehicle;
 	    public static void main(String[] args) {
 	        list = new VehicleImpls();
 	        FuelList fuellist = new FuelList();
@@ -30,8 +26,6 @@ public class Main {
 	        list2 = new VehicleHasBeenSold();
 	        accessorieslist = new AccesoriesList();
 	        customerList2 = new CustomerBuyAccessoriesList();
-	        idForCustomer = new HashSet<Integer>();
-	        idForVehicle = new HashSet<Integer>();
 	        Integer choice;
 	        do {
 	            choice = displayMainMenu();
@@ -127,16 +121,48 @@ public class Main {
 			switch (choose) {
             case 1 -> carSale(customerList);
 //            case 2 -> sellInsurance(customerList); //searchCustomer
-            case 3 -> putTheVehicleIntoStorage(customerList); 
+            case 3 -> putTheVehicleIntoStorage(customerList); //removeCustomer
             case 4 -> sellingCarAccessories(customerList2,accessorieslist);
 			}
 		}
 		
+//		private static void sellingCarAccessories(CustomerBuyAccessoriesList customerList2,
+//				AccesoriesList accessorieslist2) {
+//		    accessorieslist.displayAccessory();
+//		    Integer idCustomer = getIntegerInput("Nhập id khách hàng", 0, Integer.MAX_VALUE);
+//		    String nameCustomer = getStringInput("Nhập tên khách hàng:");
+//
+//		    boolean customerFound = false;
+//	        for (CustomerBuyAccessories customer : customerList2.getCustomerList()) {
+//	            if (idCustomer.equals(customer.getIdCustomer())) {
+//	                if (nameCustomer.equalsIgnoreCase(customer.getName())) {
+//	                    customerFound = true; 
+//	                } else {
+//	                    System.out.println("ID đã tồn tại, nhưng tên không trùng khớp. Dừng việc mua phụ kiện.");
+//	                    return; 
+//	                }
+//	            }
+//	        }
+//
+//	        if (!customerFound) {
+//	            System.out.println("Khách hàng không tồn tại! V");
+//	        }
+//
+//		    Map<String, Integer> newlist = new HashMap<>(accessorieslist.getAccessoriesList());
+//		    String name = getStringInput("Vui lòng chọn phụ kiện bạn muốn mua");
+//
+//		    if (newlist.containsKey(name)) {
+//		        Integer availableQuantity = newlist.get(name);
+//		        Integer num = getIntegerInput("Nhập số lượng muốn mua", 0, availableQuantity);
+//		        accessorieslist.buyAccessories(name, num);
+//		    } else {
+//		        System.out.println("Phụ kiện không tồn tại trong danh sách.");
+//		    }
+//		}
 		
 		private static void sellingCarAccessories(CustomerBuyAccessoriesList customerList2, AccesoriesList accessorieslist) {
 		    accessorieslist.displayAccessory();
-		    System.out.println("-------------------------------------------------------");
-		    System.out.println("Vui lòng nhập thông tin khách hàng: ");
+		    
 		    Integer idCustomer = getIntegerInput("Nhập id khách hàng: ", 0, Integer.MAX_VALUE);
 		    String nameCustomer = getStringInput("Nhập tên khách hàng: ");
 
@@ -183,13 +209,11 @@ public class Main {
 		        Integer num = getIntegerInput("Nhập số lượng muốn mua: ", 0, availableQuantity);
 		        accessorieslist.buyAccessories(name, num);
 		        customerList2.addCustomer(idCustomer, nameCustomer, name, num);
-		        idForCustomer.add(idCustomer);
 		    } else {
 		        System.out.println("Phụ kiện không tồn tại trong danh sách.");
 		    }
 		}
-		
-		
+
 
 		private static void putTheVehicleIntoStorage(CustomerList customerList) {
 		    Integer newID = getIntegerInput("Nhập id của người bán: ", 0, Integer.MAX_VALUE);
@@ -250,7 +274,7 @@ public class Main {
 
 		private static boolean getConfirmation(String message) {
 		    System.out.println(message);
-		    String response = sc.nextLine().trim().toLowerCase(); 
+		    String response = sc.nextLine().trim().toLowerCase(); // Giả định bạn có một scanner để nhận đầu vào
 		    return response.equals("có");
 		}
 
@@ -503,13 +527,12 @@ public class Main {
 	    }
 		
 		public static boolean buyVehicleForCustomer(CustomerList customerList, Integer id) {
+			//Bro xem lại tại cái đếm là đếm id, nên id trùng vẫn được chứ
 			Customer customer = new Customer() {
 			};
-			System.out.println("Nhập thông tin khách hàng: ");
 			initializeCustomer(customer);
 			customer.setIdVehicle(id);
 			boolean added = customerList.addCustomer(customer);
-			idForCustomer.add(id);
 		    return added;
 		}
 		
@@ -543,33 +566,17 @@ public class Main {
 			switch (choose) {
             case 1 -> customerList.displayCustomer();
             case 2 -> { customerList.sortCustomerWithID(); customerList.displayCustomer(); }
-            case 3 -> updateNameOfCustomer(customerList);
-//            case 4 -> removeTheCustomer(customerList); //tốt nhất là không nên làm điều này. Vì khách hàng mua nhiều xe, xoá 1 cái theo id là chết
+         // case 3 -> updateCustomer(customerList);
+//            case 4 -> removeCustomer(customerList); //removeCustomer
             case 5 -> searchCustomerID(customerList); //searchCustomer
             case 6 -> eliteCustomersList(customerList);
             case 7 -> System.out.println("Kích thước danh sách: "+customerList.size());
             case 8 -> System.out.println("Số lượng khách hàng: "+customerList.countCustomer().size());
             case 9 -> customerList.clearAll();
-            case 10 -> {System.out.println("Hiển thị danh sách khách hàng mua phụ kiện: ");customerList2.displayCustomers(); }
+            case 10 -> {customerList2.displayCustomers(); System.out.println("Hiển thị danh sách khách hàng mua phụ kiện: ");}
 			}
 		}
 
-
-
-		private static void updateNameOfCustomer(CustomerList customerList) {
-			customerList.displayCustomer();
-			Integer id = getIntegerInput("Nhập id của khách hàng muốn thay đổi: ", 0, Integer.MAX_VALUE);
-			Customer c = customerList.updateCustomer(id);
-			if(c!=null) {
-				String name = getStringInput("Nhập tên mới của khách hàng: ");
-				c.setName(name);
-				System.out.println("Cập nhật thành công!!");
-			}else {
-				System.out.println("Không tìm thấy id này.");
-			}
-		}
-
-		
 		private static void eliteCustomersList(CustomerList customerList) {
 			List<Customer> newlist = customerList.eliteCustomers();
 			if(newlist.isEmpty()) {
@@ -607,7 +614,7 @@ public class Main {
 	            case 10 -> listQualified(list);
 	            case 11 -> updateVehicle(list);
 	            case 12 -> System.out.println("Số lượng trong cửa hàng: " + list.size());
-	            case 13 -> {list.clearAll();idForVehicle.clear();}
+	            case 13 -> list.clearAll();
 	        }
 	    }
 
@@ -751,7 +758,7 @@ public class Main {
 	    private static void accessAccessoriesList(AccesoriesList accessorieslist) {
 	        Integer choose;
 	        do {
-	            choose = getIntegerInput("Bạn đang truy cập vào danh sách phụ kiện:\n"
+	            choose = getIntegerInput("Bạn đang truy cập vào danh sách loại lốp:\n"
 	                    + "1) Thêm loại phụ kiện\n"
 	                    + "2) Xóa loại phụ kiện\n"
 	                    + "3) Hiển thị loại phụ kiện\n"
@@ -811,7 +818,6 @@ public class Main {
 	                + "5) Coach\n", 1, 5);
 	        Vehicle vehicle = createVehicle(choice);
 	        list.addVehicle(vehicle);
-	        idForVehicle.add(vehicle.getId());
 	        System.out.println("Add successful!!");
 	    }
 
@@ -940,7 +946,6 @@ public class Main {
 	                "phim bat ky de huy..");
 	        int x = Integer.parseInt(sc.nextLine());
 	        if (x == 1) {
-	        	idForVehicle.remove(newID);
 	            list.removeVehicle(newID);
 	            System.out.println("Delete successful");
 	        } else {
@@ -1103,6 +1108,7 @@ public class Main {
 				}else {
 					System.out.println("Huỷ thao tác thành công!!");
 				}
+				
 			}
 			return list;
 		}

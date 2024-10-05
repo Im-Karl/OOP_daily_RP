@@ -15,7 +15,7 @@ public class TyreList {
 	}
 	public void displayTyre() {
 		if(tyrelist.isEmpty()) {
-			System.out.println("Danh sách lốp trông!!");
+			System.out.println("Danh sách lốp trống!!");
 		}else {
 			System.out.println("Danh sách lốp niêm yết:");
 			for(String tyre : tyrelist) {

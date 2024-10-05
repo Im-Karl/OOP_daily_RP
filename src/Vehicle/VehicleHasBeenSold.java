@@ -1,6 +1,8 @@
 package Vehicle;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,10 +29,13 @@ public class VehicleHasBeenSold implements ListVehicle<Vehicle>{
 	    }
 	    if (!exists) {
 	        list.add(v);
-	        System.out.println("Add successful!!");
 	    }
 	}
-
+	
+	public List<Vehicle> getAllVehicles() {
+        return list; // Trả về một bản sao của danh sách
+    }
+	
 	@Override
 	public Vehicle searchVehicle(Integer id) {
 		for(Vehicle v : list) {
@@ -46,11 +51,19 @@ public class VehicleHasBeenSold implements ListVehicle<Vehicle>{
 		for(Vehicle v : list) {
 			if(v.getId().equals(id)) {
 				list.remove(v);
-				System.out.println("Delete successful");
 			}else {
 				System.out.println("Not containt this id in list");
 			}
 		}
+//		Iterator<Vehicle> iterator = this.list.iterator(); // Giả sử vehicles là danh sách chứa xe đã bán
+//	    
+//	    while (iterator.hasNext()) {
+//	        Vehicle vehicle = iterator.next();
+//	        if (vehicle.getId().equals(id)) {
+//	            iterator.remove(); // Xóa xe khỏi danh sách
+//	            break; // Kết thúc vòng lặp sau khi xóa
+//	        }
+//	    }
 	}
 
 	@Override
@@ -68,11 +81,14 @@ public class VehicleHasBeenSold implements ListVehicle<Vehicle>{
 		if(list.isEmpty()) {
 			System.out.println("List is empty!");
 		}else {
-			System.out.printf("%-4s &-14s %-10s %-10s %-10s %-15s %-18s%n", "ID", "Brand","Type","Colour","Speed (Km/h)", "Price (Dong)", "Details");
+			System.out.printf("%-4s %-14s %-10s %-10s %-10s %-15s %-18s%n", 
+	                  "ID", "Brand", "Type", "Colour", "Speed (Km/h)", "Price (Dong)", "Details");
 			System.out.println("-------------------------------------------------------------------------------");
-			for(Vehicle v : list) {
-				System.out.printf("%-4 %-14 %-10 %-15 %-7 %-15 %s%n", v.getId(),v.getBrand(),v.getType(),v.getColour(),v.getSpeed(),v.getPrice(),v.toString());
-			}
+		
+			for (Vehicle v : list) {
+			    System.out.printf("%-4d %-14s %-10s %-10s %-10d %-15d %-18s%n", 
+			                      v.getId(), v.getBrand(), v.getType(), v.getColour(), v.getSpeed(), v.getPrice(), v.toString());
+			}				
 		}
 		return list;
 	}
@@ -88,8 +104,9 @@ public class VehicleHasBeenSold implements ListVehicle<Vehicle>{
 
 	@Override
 	public Integer size() {
-		System.out.println("Số lượng đã bán: "+list.size());
-		return null;
+//		System.out.println("Số lượng đã bán: "+list.size());
+//		return null;
+		return list.size();
 	}
 
 	@Override
@@ -106,6 +123,21 @@ public class VehicleHasBeenSold implements ListVehicle<Vehicle>{
 			}
 		}
 		return  s;
+	}
+	
+	public List<Vehicle> searchVehicleType(String type) {
+	    List<Vehicle> newlist = new LinkedList<>();
+	    
+	    if (list.isEmpty()) {
+	        System.out.println(" ");
+	        return newlist; 
+	    }
+	    for (Vehicle v : list) {
+	        if (v.getType().equalsIgnoreCase(type)) {
+	            newlist.add(v);
+	        }
+	    }
+	    return newlist; 
 	}
 	
 	public List<Vehicle> searchVehicleColor(String colour){
