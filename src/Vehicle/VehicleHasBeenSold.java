@@ -7,7 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class VehicleHasBeenSold implements ListVehicle<Vehicle>{
-	List<Vehicle> list;
+	private List<Vehicle> list;
+	
 	public VehicleHasBeenSold() {
 		list = new LinkedList<Vehicle>();
 	}

@@ -1,5 +1,6 @@
 package Vehicle;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -11,13 +12,15 @@ import java.util.Set;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 public class Main {
+	
 	    public static Scanner sc = new Scanner(System.in);
+	    public static Random rd = new Random();
 	    private static ListVehicle<Vehicle> list;
 	    private static VehicleHasBeenSold list2;
 	    private static CustomerList customerList;
 	    private static AccesoriesList accessorieslist;
 	    private static CustomerBuyAccessoriesList customerList2;
-	    private static Set<Integer> idForCustomer ;
+	    private static Set<Integer> idForCustomer;
 	    private static Set<Integer> idForVehicle;
 	    public static void main(String[] args) {
 	        list = new VehicleImpls();
@@ -45,13 +48,27 @@ public class Main {
 	                case 7 -> accessStationList(stationList);
 	                case 8 -> accessTyreList(tyreList);
 	                case 9 -> accessAccessoriesList(accessorieslist);
+	                case 10 -> spinGift(idForCustomer);
+	                case 11 -> System.out.println(idForCustomer);
 	                case 0 -> System.out.println("Kết thúc chương trình. Cảm ơn bạn!");
 	                default -> System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
 	            }
 	        } while (choice != 0);
 	    }
 
-	    private static Integer displayMainMenu() {
+	    private static void spinGift(Set<Integer> idForCustomer) {
+	    	List<Integer> list = new ArrayList<>(idForCustomer);
+	        if (list.size() == 0) {
+	            System.out.println("Không có danh sách để quay thưởng.");
+	            return;
+	        }
+	        System.out.println("Danh sách khách hàng: " + list);
+	        int randomIndex = rd.nextInt(list.size());
+	        Integer id = list.get(randomIndex);
+	        System.out.println("Chúc mừng khách hàng trúng thưởng có id là " + id+".");
+	    }
+	    
+		private static Integer displayMainMenu() {
 	        System.out.println("-----Chào mừng đến với sự quản lý của Phan Anh Kiệt :)-----\n"
 	                + "Vui lòng chọn một tuỳ chọn phía dưới nhé \n"
 	                + "1) Truy cập vào danh sách cửa hàng\n"
@@ -64,7 +81,7 @@ public class Main {
 	                + "8) Truy cập vào danh sách loại lốp\n"
 	                + "9) Truy cập vào danh sách phụ kiện\n"
 	                + "0) Để thoát chương trình\n");
-	        return getIntegerInput("Chọn tuỳ chọn: ", 0, 9);
+	        return getIntegerInput("Chọn tuỳ chọn: ", 0, 11);
 	    }
 
 	    private static void accessStore(ListVehicle<Vehicle> list) {
@@ -509,19 +526,19 @@ public class Main {
 			initializeCustomer(customer);
 			customer.setIdVehicle(id);
 			boolean added = customerList.addCustomer(customer);
-			idForCustomer.add(id);
 		    return added;
 		}
-		
 		private static void initializeCustomer(Customer customer) {
-	        customer.setIdCustomer(getIntegerInput("Nhập mã ID: ", 0, Integer.MAX_VALUE));
+			Integer id =(getIntegerInput("Nhập mã ID: ", 0, Integer.MAX_VALUE));
+	        customer.setIdCustomer(id);
+	        idForCustomer.add(id);
 	        customer.setName(getStringInput("Nhập Tên Khách hàng: "));
 	        customer.setDiaChi(getStringInput("Nhập địa chỉ "));
 	    }
 		
 		private static void accessCustomerList(CustomerList customerList,CustomerBuyAccessoriesList customerList2) {
 			Integer choose;
-	        do {
+	        do { 
 	            choose = getIntegerInput("Bạn đang truy cập vào danh sách khách hàng:\n"
 	                    + "1) Hiển thị khách hàng\n"
 	                    + "2) Sắp xếp theo ID\n"
@@ -812,7 +829,7 @@ public class Main {
 	        Vehicle vehicle = createVehicle(choice);
 	        list.addVehicle(vehicle);
 	        idForVehicle.add(vehicle.getId());
-	        System.out.println("Add successful!!");
+//	        System.out.println("Add successful!!");
 	    }
 
 	    private static  Vehicle createVehicle(Integer choice) {
@@ -861,8 +878,25 @@ public class Main {
 	        return vehicle;
 	    }
 
+	    private static boolean checkIdForCustom(Integer id) {
+	        if (idForCustomer.isEmpty()) {
+	            return true; 
+	        }
+	        for (Integer c : idForCustomer) {
+	            if (c.equals(id)) {
+	                System.out.println("Đã xuất hiện id này trong lịch sử. Vui lòng nhập lại!");
+	                return false; 
+	            }
+	        }
+	        return true;
+	    }
+	    
 	    private static void initializeVehicle(Vehicle vehicle) {
-	        vehicle.setId(getIntegerInput("Nhập mã ID: ", 0, Integer.MAX_VALUE));
+	    	Integer id;
+	        do {
+	        	id =(getIntegerInput("Nhập mã ID: ", 0, Integer.MAX_VALUE));
+			} while (!checkIdForCustom(id));
+	        vehicle.setId(id);
 	        vehicle.setBrand(getStringInput("Nhập thương hiệu: "));
 	        vehicle.setSpeed(getIntegerInput("Nhập tốc độ: ", 10, 500));
 	        vehicle.setColour(getStringInput("Nhập màu sắc: "));

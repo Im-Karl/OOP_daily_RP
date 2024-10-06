@@ -4,7 +4,9 @@ import java.util.Objects;
 
 public abstract class Vehicle {
 	protected Integer id;
-	protected String brand, type,colour;
+	protected String brand; 
+	protected String type;
+	protected String colour;
 	protected Integer speed;
 	protected BigInteger price;
 	public Vehicle(Integer id, String brand, String type,Integer speed, BigInteger price, String colour) {

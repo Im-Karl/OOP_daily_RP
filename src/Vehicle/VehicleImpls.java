@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Scanner;
 
 public class VehicleImpls implements ListVehicle<Vehicle>{
 	List<Vehicle> list;
@@ -26,6 +27,7 @@ public class VehicleImpls implements ListVehicle<Vehicle>{
 	    }
 	    if (!exists) {
 	        list.add(v);
+	        System.out.println("Add successful!!"); // Đôi khi nó bị hư ở bên kia ấy
 	    }
 	}
 	
